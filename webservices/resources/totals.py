@@ -18,7 +18,9 @@ totals_schema_map = {
     'S': (models.CommitteeTotalsHouseSenate, schemas.CommitteeTotalsHouseSenatePageSchema),
     'I': (models.CommitteeTotalsIEOnly, schemas.CommitteeTotalsIEOnlyPageSchema),
     'O': (models.CommitteeTotalsPac, schemas.CommitteeTotalsPacPageSchema),
-    'XY': (models.CommitteeTotalsParty, schemas.CommitteeTotalsPartyPageSchema)
+    'X': (models.CommitteeTotalsParty, schemas.CommitteeTotalsPartyPageSchema)
+    #TODO Identify the correct form type for this committee typeand update the MV
+    #'Y': (models.CommitteeTotalsParty, schemas.CommitteeTotalsPartyPageSchema)
 }
 default_schemas = (models.CommitteeTotalsPacParty, schemas.CommitteeTotalsPacPartyPageSchema)
 
