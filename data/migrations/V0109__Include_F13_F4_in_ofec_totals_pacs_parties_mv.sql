@@ -214,8 +214,10 @@ CREATE INDEX idx_ofec_totals_pacs_parties_mv_cmte_dsgn_full_idx
 CREATE OR REPLACE VIEW ofec_totals_pacs_parties_vw AS 
 SELECT * FROM ofec_totals_pacs_parties_mv;
 
-ALTER VIEW ofec_totals_pacs_parties_vw OWNER TO fec;
-GRANT SELECT ON ofec_totals_pacs_parties_vw TO fec_read;
+ALTER TABLE public.ofec_totals_pacs_parties_vw
+  OWNER TO fec;
+GRANT ALL ON TABLE public.ofec_totals_pacs_parties_vw TO fec;
+GRANT SELECT ON TABLE public.ofec_totals_pacs_parties_vw TO fec_read;
 
 -- --------------------------
 -- --------------------------
