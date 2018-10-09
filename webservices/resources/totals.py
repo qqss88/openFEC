@@ -6,11 +6,17 @@ from webservices import docs
 from webservices import utils
 from webservices import schemas
 from webservices.common import models
-from webservices.common.models import db, TransactionCoverage
 from webservices.common.views import ApiResource
 from webservices.utils import use_kwargs
-from webservices.resources.reports import reports_type_map
 
+committee_type_map = {
+    'house-senate': 'H',
+    'presidential': 'P',
+    'ie-only': 'I',
+    'pac-party': None,
+    'pac': 'O',
+    'party': 'XY'
+}
 
 totals_schema_map = {
     'P': (models.CommitteeTotalsPresidential, schemas.CommitteeTotalsPresidentialPageSchema),
@@ -84,7 +90,7 @@ class TotalsView(utils.Resource):
             committee = query.first_or_404()
             return committee.committee_type
         elif committee_type is not None:
-            return reports_type_map.get(committee_type)
+            return committee_type_map.get(committee_type)
 
 @doc(
     tags=['financial'],
@@ -140,8 +146,6 @@ class TotalsCommitteeView(ApiResource):
             query = query.order_by(sa.desc(models.CommitteeHistory.cycle))
             committee = query.first_or_404()
             return committee.committee_type
-        elif committee_type is not None:
-            return reports_type_map.get(committee_type)
 
 @doc(
     tags=['candidate'],
