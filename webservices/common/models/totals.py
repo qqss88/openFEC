@@ -207,7 +207,7 @@ class CommitteeTotalsPac(CommitteeTotalsPacPartyBase):
 
 
 class CommitteeTotalsPacParty(CommitteeTotalsPacPartyBase):
-    __tablename__ = 'ofec_totals_pacs_parties_mv'
+    __tablename__ = 'ofec_totals_pacs_parties_vw'
 
 
 class CommitteeTotalsHouseSenate(CommitteeTotals):

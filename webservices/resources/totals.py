@@ -15,7 +15,7 @@ committee_type_map = {
     'ie-only': 'I',
     'pac-party': None,
     'pac': 'O',
-    'party': 'XY'
+    'party': 'X'
 }
 
 totals_schema_map = {
@@ -23,9 +23,6 @@ totals_schema_map = {
     'H': (models.CommitteeTotalsHouseSenate, schemas.CommitteeTotalsHouseSenatePageSchema),
     'S': (models.CommitteeTotalsHouseSenate, schemas.CommitteeTotalsHouseSenatePageSchema),
     'I': (models.CommitteeTotalsIEOnly, schemas.CommitteeTotalsIEOnlyPageSchema),
-    'O': (models.CommitteeTotalsPac, schemas.CommitteeTotalsPacPageSchema),
-    'X': (models.CommitteeTotalsParty, schemas.CommitteeTotalsPartyPageSchema),
-    'Y': (models.CommitteeTotalsParty, schemas.CommitteeTotalsPartyPageSchema),
 }
 default_schemas = (models.CommitteeTotalsPacParty, schemas.CommitteeTotalsPacPartyPageSchema)
 
@@ -59,9 +56,6 @@ class TotalsView(utils.Resource):
             committee_type=committee_type,
             **kwargs
         )
-        if kwargs['sort']:
-            validator = args.IndexValidator(totals_class)
-            validator(kwargs['sort'])
         page = utils.fetch_page(query, kwargs, model=totals_class)
         return totals_schema().dump(page).data
 
@@ -115,9 +109,6 @@ class TotalsCommitteeView(ApiResource):
             committee_type=committee_type,
             **kwargs
         )
-        if kwargs['sort']:
-            validator = args.IndexValidator(totals_class)
-            validator(kwargs['sort'])
         page = utils.fetch_page(query, kwargs, model=totals_class)
         return totals_schema().dump(page).data
 
